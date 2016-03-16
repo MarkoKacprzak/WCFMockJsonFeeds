@@ -2,7 +2,6 @@
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.ServiceModel.Web;
-using SampleWCF;
 using WCFMock.SampleService;
 
 namespace WCFConsole

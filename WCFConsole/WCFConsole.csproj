@@ -37,15 +37,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -58,10 +51,6 @@
     <ProjectReference Include="..\SampleService\SampleService.csproj">
       <Project>{F0ACD40A-7071-4DEB-9FF8-4D03891BE70D}</Project>
       <Name>SampleService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SampleWCF\SampleWCF.csproj">
-      <Project>{5A3C2ECF-8D82-4962-8894-B229E929D131}</Project>
-      <Name>SampleWCF</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
