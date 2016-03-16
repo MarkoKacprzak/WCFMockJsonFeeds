@@ -10,15 +10,15 @@ namespace WCFConsole
     {
         static void Main(string[] args)
         {
-            Uri baseAddress = new Uri("http://localhost:8080/");
+            var baseAddress = new Uri("http://localhost:8080/");
             var binding = new WebHttpBinding();
             
            
             // Create the ServiceHost.
-            using (WebServiceHost host = new WebServiceHost(typeof(ProductCatalog), baseAddress))
+            using (var host = new WebServiceHost(typeof(ProductCatalog), baseAddress))
             {
                 host.AddServiceEndpoint(typeof(IProductCatalog), binding, baseAddress.AbsoluteUri);
-                ServiceDebugBehavior stp = host.Description.Behaviors.Find<ServiceDebugBehavior>();
+                var stp = host.Description.Behaviors.Find<ServiceDebugBehavior>();
                 stp.HttpHelpPageEnabled = true;
 
                 // Enable metadata publishing.

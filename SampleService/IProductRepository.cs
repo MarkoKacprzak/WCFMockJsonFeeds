@@ -36,17 +36,13 @@ namespace WCFMock.SampleService
 
 	public class InMemoryProductRepository : IProductRepository
 	{
-		IList<Product> products;
+	    readonly IList<Product> _products;
 
 		public InMemoryProductRepository(IList<Product> products)
 		{
-		    var a = 2;
-			this.products = products;
+            _products = products;
 		}
 
-		public IQueryable<Product> GetProducts(string category)
-		{
-			return products.Where(p => p.Category == category).AsQueryable();
-		}
+		public IQueryable<Product> GetProducts(string category) => _products.Where(p => p.Category == category).AsQueryable();
 	}
 }

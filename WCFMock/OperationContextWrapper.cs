@@ -36,7 +36,7 @@ namespace System.ServiceModel
 	/// </summary>
 	public class OperationContextWrapper : IOperationContext
 	{
-		OperationContext context;
+	    readonly OperationContext context;
 
 		public OperationContextWrapper(OperationContext context)
 		{
@@ -55,62 +55,29 @@ namespace System.ServiceModel
 			context.SetTransactionComplete();
 		}
 
-		IContextChannel IOperationContext.Channel
-		{
-			get { return context.Channel; }
-		}
+		IContextChannel IOperationContext.Channel => context.Channel;
 
-		IExtensionCollection<OperationContext> IOperationContext.Extensions
-		{
-			get { return context.Extensions; }
-		}
+	    IExtensionCollection<OperationContext> IOperationContext.Extensions => context.Extensions;
 
-		bool IOperationContext.HasSupportingTokens
-		{
-			get { return context.HasSupportingTokens; }
-		}
+	    bool IOperationContext.HasSupportingTokens => context.HasSupportingTokens;
 
-		ServiceHostBase IOperationContext.Host
-		{
-			get { return context.Host; }
-		}
+	    ServiceHostBase IOperationContext.Host => context.Host;
 
-		MessageHeaders IOperationContext.IncomingMessageHeaders
-		{
-			get { return context.IncomingMessageHeaders; }
-		}
+	    MessageHeaders IOperationContext.IncomingMessageHeaders => context.IncomingMessageHeaders;
 
-		MessageProperties IOperationContext.IncomingMessageProperties
-		{
-			get { return context.IncomingMessageProperties; }
-		}
+	    MessageProperties IOperationContext.IncomingMessageProperties => context.IncomingMessageProperties;
 
-		MessageVersion IOperationContext.IncomingMessageVersion
-		{
-			get { return context.IncomingMessageVersion; }
-		}
+	    MessageVersion IOperationContext.IncomingMessageVersion => context.IncomingMessageVersion;
 
-		InstanceContext IOperationContext.InstanceContext
-		{
-			get { return context.InstanceContext; }
-		}
+	    InstanceContext IOperationContext.InstanceContext => context.InstanceContext;
 
-		bool IOperationContext.IsUserContext
-		{
-			get { return context.IsUserContext; }
-		}
+	    bool IOperationContext.IsUserContext => context.IsUserContext;
 
-		MessageHeaders IOperationContext.OutgoingMessageHeaders
-		{
-			get { return context.OutgoingMessageHeaders; }
-		}
+	    MessageHeaders IOperationContext.OutgoingMessageHeaders => context.OutgoingMessageHeaders;
 
-		MessageProperties IOperationContext.OutgoingMessageProperties
-		{
-			get { return context.OutgoingMessageProperties; }
-		}
+	    MessageProperties IOperationContext.OutgoingMessageProperties => context.OutgoingMessageProperties;
 
-		RequestContext IOperationContext.RequestContext
+	    RequestContext IOperationContext.RequestContext
 		{
 			get
 			{
@@ -122,19 +89,10 @@ namespace System.ServiceModel
 			}
 		}
 
-		IServiceSecurityContext IOperationContext.ServiceSecurityContext
-		{
-			get { return new ServiceSecurityContextWrapper(context.ServiceSecurityContext); }
-		}
+		IServiceSecurityContext IOperationContext.ServiceSecurityContext => new ServiceSecurityContextWrapper(context.ServiceSecurityContext);
 
-		string IOperationContext.SessionId
-		{
-			get { return context.SessionId; }
-		}
+	    string IOperationContext.SessionId => context.SessionId;
 
-		ICollection<SupportingTokenSpecification> IOperationContext.SupportingTokens
-		{
-			get { return context.SupportingTokens; }
-		}
+	    ICollection<SupportingTokenSpecification> IOperationContext.SupportingTokens => context.SupportingTokens;
 	}
 }

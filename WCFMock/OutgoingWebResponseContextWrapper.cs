@@ -33,39 +33,39 @@ namespace System.ServiceModel.Web
 {
 	public class OutgoingWebResponseContextWrapper : IOutgoingWebResponseContext
 	{
-		private OutgoingWebResponseContext context;
+		private readonly OutgoingWebResponseContext _context;
 
 		public OutgoingWebResponseContextWrapper(OutgoingWebResponseContext context)
 		{
-			this.context = context;
+			_context = context;
 		}
 
 		#region IOutgoingWebResponseContext Members
 
 		public void SetStatusAsCreated(Uri locationUri)
 		{
-			context.SetStatusAsCreated(locationUri);
+			_context.SetStatusAsCreated(locationUri);
 		}
 
 		public void SetStatusAsNotFound()
 		{
-			context.SetStatusAsNotFound();
+			_context.SetStatusAsNotFound();
 		}
 
 		public void SetStatusAsNotFound(string description)
 		{
-			context.SetStatusAsNotFound(description);
+			_context.SetStatusAsNotFound(description);
 		}
 
 		public long ContentLength
 		{
 			get
 			{
-				return context.ContentLength;
+				return _context.ContentLength;
 			}
 			set
 			{
-				context.ContentLength = value;
+				_context.ContentLength = value;
 			}
 		}
 
@@ -73,46 +73,43 @@ namespace System.ServiceModel.Web
 		{
 			get
 			{
-				return context.ContentType;
+				return _context.ContentType;
 			}
 			set
 			{
-				context.ContentType = value;
+				_context.ContentType = value;
 			}
 		}
 
 	    public WebMessageFormat? Format
 	    {
-	        get { return context.Format; }
-	        set { context.Format = value; }
+	        get { return _context.Format; }
+	        set { _context.Format = value; }
 	    }
 
         public string ETag
 		{
 			get
 			{
-				return context.ETag;
+				return _context.ETag;
 			}
 			set
 			{
-				context.ETag = value;
+				_context.ETag = value;
 			}
 		}
 
-		public System.Net.WebHeaderCollection Headers
-		{
-			get { return context.Headers; }
-		}
+		public System.Net.WebHeaderCollection Headers => _context.Headers;
 
-		public DateTime LastModified
+	    public DateTime LastModified
 		{
 			get
 			{
-				return context.LastModified;
+				return _context.LastModified;
 			}
 			set
 			{
-				context.LastModified = value;
+				_context.LastModified = value;
 			}
 		}
 
@@ -120,11 +117,11 @@ namespace System.ServiceModel.Web
 		{
 			get
 			{
-				return context.Location;
+				return _context.Location;
 			}
 			set
 			{
-				context.Location = value;
+				_context.Location = value;
 			}
 		}
 
@@ -132,11 +129,11 @@ namespace System.ServiceModel.Web
 		{
 			get
 			{
-				return context.StatusCode;
+				return _context.StatusCode;
 			}
 			set
 			{
-				context.StatusCode = value;
+				_context.StatusCode = value;
 			}
 		}
 
@@ -144,11 +141,11 @@ namespace System.ServiceModel.Web
 		{
 			get
 			{
-				return context.StatusDescription;
+				return _context.StatusDescription;
 			}
 			set
 			{
-				context.StatusDescription = value;
+				_context.StatusDescription = value;
 			}
 		}
 
@@ -156,11 +153,11 @@ namespace System.ServiceModel.Web
 		{
 			get
 			{
-				return context.SuppressEntityBody;
+				return _context.SuppressEntityBody;
 			}
 			set
 			{
-				context.SuppressEntityBody = value;
+				_context.SuppressEntityBody = value;
 			}
 		}
 

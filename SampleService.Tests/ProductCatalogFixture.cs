@@ -44,14 +44,14 @@ namespace SampleService.Tests
 		[TestMethod]
 		public void ShouldGetProductsFeed()
 		{
-			ProductCatalog catalog = new ProductCatalog(
+			var catalog = new ProductCatalog(
 				new InMemoryProductRepository(
 					new List<Product>{ 
 					new Product { Id = "1", Category = "foo", Name = "Foo1", UnitPrice = 1 },
 					new Product { Id = "2", Category = "bar", Name = "bar2", UnitPrice = 2 }
 				}));
 
-			Mock<IWebOperationContext> mockContext = new Mock<IWebOperationContext> { DefaultValue = DefaultValue.Mock };
+			var mockContext = new Mock<IWebOperationContext> { DefaultValue = DefaultValue.Mock };
 			IEnumerable<SyndicationItem> items;
 			using (new MockedWebOperationContext(mockContext.Object))
 			{

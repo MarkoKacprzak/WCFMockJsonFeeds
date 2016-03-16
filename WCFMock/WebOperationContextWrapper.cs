@@ -33,26 +33,20 @@ namespace System.ServiceModel.Web
 {
 	public class WebOperationContextWrapper : IWebOperationContext
 	{
-		private WebOperationContext context;
+		private readonly WebOperationContext _context;
 
 		public WebOperationContextWrapper(WebOperationContext context)
 		{
-			this.context = context;
+			this._context = context;
 		}
 
 		#region IWebOperationContext Members
 
-		public IIncomingWebRequestContext IncomingRequest
-		{
-			get { return new IncomingWebRequestContextWrapper(context.IncomingRequest); }
-		}
+		public IIncomingWebRequestContext IncomingRequest => new IncomingWebRequestContextWrapper(_context.IncomingRequest);
 
-		public IOutgoingWebResponseContext OutgoingResponse
-		{
-			get { return new OutgoingWebResponseContextWrapper(context.OutgoingResponse); }
-		}
+	    public IOutgoingWebResponseContext OutgoingResponse => new OutgoingWebResponseContextWrapper(_context.OutgoingResponse);
 
-		#endregion
+	    #endregion
 	}
 }
 

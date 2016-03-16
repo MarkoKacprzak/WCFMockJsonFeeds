@@ -36,51 +36,21 @@ namespace System.ServiceModel
 	/// </summary>
 	public class ServiceSecurityContextWrapper : IServiceSecurityContext
 	{
-		ServiceSecurityContext context;
+	    readonly ServiceSecurityContext _context;
 
 		public ServiceSecurityContextWrapper(ServiceSecurityContext context)
 		{
-			this.context = context;
+			this._context = context;
 		}
 
-		AuthorizationContext IServiceSecurityContext.AuthorizationContext
-		{
-			get
-			{
-				return this.context.AuthorizationContext;
-			}
-		}
+		AuthorizationContext IServiceSecurityContext.AuthorizationContext => this._context.AuthorizationContext;
 
-		ReadOnlyCollection<IAuthorizationPolicy> IServiceSecurityContext.AuthorizationPolicies
-		{
-			get
-			{
-				return this.context.AuthorizationPolicies;
-			}
-		}
+	    ReadOnlyCollection<IAuthorizationPolicy> IServiceSecurityContext.AuthorizationPolicies => this._context.AuthorizationPolicies;
 
-		bool IServiceSecurityContext.IsAnonymous
-		{
-			get
-			{
-				return this.context.IsAnonymous;
-			}
-		}
+	    bool IServiceSecurityContext.IsAnonymous => this._context.IsAnonymous;
 
-		IIdentity IServiceSecurityContext.PrimaryIdentity
-		{
-			get
-			{
-				return this.context.PrimaryIdentity;
-			}
-		}
+	    IIdentity IServiceSecurityContext.PrimaryIdentity => this._context.PrimaryIdentity;
 
-		WindowsIdentity IServiceSecurityContext.WindowsIdentity
-		{
-			get
-			{
-				return this.context.WindowsIdentity;
-			}
-		}
+	    WindowsIdentity IServiceSecurityContext.WindowsIdentity => this._context.WindowsIdentity;
 	}
 }

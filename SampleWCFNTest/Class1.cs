@@ -11,8 +11,8 @@ namespace SampleWCFNTest
         [Test]
         public void Test()
         {
-            HelloWorldService service=new HelloWorldService();
-            Mock<IWebOperationContext> mockService = new Mock<IWebOperationContext> {DefaultValue = DefaultValue.Mock};
+            var service=new HelloWorldService();
+            var mockService = new Mock<IWebOperationContext> {DefaultValue = DefaultValue.Mock};
             using (new MockedWebOperationContext(mockService.Object))
             {
                 service.SayHello("asdad");

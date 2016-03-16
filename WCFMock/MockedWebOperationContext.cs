@@ -35,29 +35,29 @@ namespace System.ServiceModel.Web
 	public class MockedWebOperationContext : IDisposable
 	{
 		[ThreadStatic]
-		private static IWebOperationContext currentContext;
+		private static IWebOperationContext _currentContext;
 
 		public MockedWebOperationContext(IWebOperationContext context)
 		{
-			currentContext = context;
+			_currentContext = context;
 		}
 
 		public static IWebOperationContext Current
 		{
 			get
 			{
-				if (currentContext == null)
+				if (_currentContext == null)
 				{
 					return new WebOperationContextWrapper(WebOperationContext.Current);
 				}
 				
-				return currentContext;
+				return _currentContext;
 			}
 		}
 
 		public void Dispose()
 		{
-			currentContext = null;
+			_currentContext = null;
 		}
 	}
 }

@@ -73,17 +73,16 @@ namespace WCFMock.SampleService
                     PublishDate = new DateTime(2008, 7, 1, 0, 0, 0),
                     Authors = 
 					{ 
-						new SyndicationPerson() 
+						new SyndicationPerson
 						{
 							Name = "cibrax"
 						}
 					},
-					Content = new TextSyndicationContent(string.Format("Category Id {0} - Price {1}",
-						product.Category, product.UnitPrice))
+					Content = new TextSyndicationContent($"Category Id {product.Category} - Price {product.UnitPrice}")
 				});
 			}
 										
-			var feed = new SyndicationFeed()
+			var feed = new SyndicationFeed
 			{
 				Id = "http://Products",
 				Title = new TextSyndicationContent("Product catalog"),
@@ -94,14 +93,14 @@ namespace WCFMock.SampleService
             WebOperationContext.Current.OutgoingResponse.Format = WebMessageFormat.Json;
             WebOperationContext.Current.OutgoingResponse.ContentType = "application/json";
 
-            MemoryStream stream = new MemoryStream();
-            DataContractJsonSerializer writeSerializer = new DataContractJsonSerializer(typeof(JsonFeedFormatter));
+            var stream = new MemoryStream();
+            var writeSerializer = new DataContractJsonSerializer(typeof(JsonFeedFormatter));
             writeSerializer.WriteObject(stream, new JsonFeedFormatter(feed));
             stream.Position = 0;
 
 
-            DataContractJsonSerializer readSerializer = new DataContractJsonSerializer(typeof(JsonFeedFormatter));
-            JsonFeedFormatter formatter = readSerializer.ReadObject(stream) as JsonFeedFormatter;
+            var readSerializer = new DataContractJsonSerializer(typeof(JsonFeedFormatter));
+            var formatter = readSerializer.ReadObject(stream) as JsonFeedFormatter;
             return formatter;
 		}
 	}
